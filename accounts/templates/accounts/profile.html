@@ -1,0 +1,81 @@
+
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+{% load static %}
+{% if user.is_authenticated %}
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <div class="row">
+                    <div class="col s2" style="margin-top: 15px;margin-left: 15px;">
+                      <img src="{{user.userprofile.photo.url}}" alt="" class="circle responsive-img valign profile-image-post">
+                      <h6 class="center">@{{user.username}}</h6>
+                    </div>
+
+                      <form class="site" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="input-field col s9">
+                        {{add.title}}
+                        <label for="id_title" class="">Title</label>
+                         </div>
+                         <div class="input-field col s9">
+                         {{add.body}}
+                         <label for="id_body" class="">What's on your mind?</label>
+                       </div>
+                       <div class="modal-footer">
+                         <button class="waves-effect waves-light btn-small transparent black-text" type="submit" name="button">Add Post</button>
+                       </div>
+                      </form>
+
+                  </div>
+    </div>
+
+  </div>
+{% endif %}
+
+
+<div class="row">
+  <div class="col s12 m8 offset-m2">
+    <div class="row">
+      <div class="col s12">
+        <div class="card">
+          <div class="card-image">
+            <img class="bki" src="http://www.img.lirent.net/2014/10/Android-Lollipop-wallpapers-Download.jpg" alt=""/ style="height:150px;border-radius: 0;">
+          </div>
+          <div class="card-content">
+            <div class="row">
+              <div class="col s4 profile-pic">
+                <img class="circle" src="{{user.userprofile.photo.url}}" alt=""/>
+                <h4 style="color: #3F51B5; margin-top:5px;  margin-bottom:2px;">{{user.first_name}} <span style="font-size:0.5em;"></span></h4>
+                <h6 style="color: ##262829a1; margin-top:0;"><i>#{{user.username}}</i></h6>
+                <p class="left-align"><code> Email: {{user.email}}</code></p>
+                <p class="left-align"><code> Website: {{user.userprofile.website}}</code></p>
+                <p class="left-align"><code> Phone: {{user.userprofile.phone}}</code></p>
+                <p class="left-align"><code> From: {{user.userprofile.city}} {{user.userprofile.country|capfirst}}</code></p>
+              </div>
+            </div>
+            <div  class="row">
+              <div class="col s12">
+                <h6 class="center" style="color:grey;"><strong>About You</strong></h6>
+                <div class="fr-view center">
+                     {% autoescape off %}
+                     {{user.userprofile.bio}}
+                     {% endautoescape %}
+                   </div>
+              </div>
+              <div class="row right-align">
+                <a  href="{% url 'accounts:updateprofile' %}"><i class="far fa-edit fa-2x"></i></a>
+              </div>
+            </div>
+                </div>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

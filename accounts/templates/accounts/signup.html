@@ -1,0 +1,82 @@
+{% extends 'accounts/base.html' %}
+
+{% block head %}
+<title>Vi talks :: SignUp.</title>
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+          <div class="row" style="margin-bottom: 0px;">
+                  <div class="col s12 m4 offset-m4 valign-wrapper" style="margin-top: 0;">
+                    <div class="card col s12 z-depth-4" style="margin-top:0;">
+                      <div class="card-image">
+                        <div class="row" >
+                          <div class="col s4 offset-s4">
+                            <img class="responsive-img" src="{% static 'accounts/images/user2.png' %}" alt=""  style="height: 120px;">
+                          </div>
+                        </div>
+                        <h5 class="center-align">Join Us</h5>
+                      </div>
+                      <div class="card-content col s12" style="border-top:  2px solid #00bcd4;">
+                        <div class="row" style="margin-bottom: 0px;">
+                          <form class="col s12" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                              <div class="input-field col s12" style="margin-bottom: 0px; margin-top: 0px;">
+                                <i class="fas fa-user fa-sm prefix"></i>
+                                {{form.first_name}}
+                                <label for="id_first_name">YourName</label>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="input-field col s12" style="margin-bottom: 0px; margin-top: 0px;">
+                                <i id="id_usernameicn" class="fas fa-users fa-sm prefix"></i>
+                                {{form.username}}
+                                {{form.username.errors}}
+                                <label id="id_usernamelbl" for="id_username">Username</label>
+                              </div>
+                                </div>
+                            <div class="row">
+                                <div class="input-field col s12 " style="margin-bottom: 0px; margin-top: 0px;">
+                                  <i class="fas fa-envelope fa-sm prefix"></i>
+                                  {{form.email}}
+                                  {{form.email.errors}}
+                                  <label for="id_email">Email</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                              <div class="input-field col s12" style="margin-bottom: 0px; margin-top: 0px;">
+                                <i id="act1" class="fas fa-key fa-sm prefix"></i>
+                                {{form.password1}}
+                                {{form.password1.errors}}
+                                <label for="id_password1">Password</label>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="input-field col s12" style="margin-bottom: 0px; margin-top: 0px;">
+                                <i id="act2" class="fas fa-key fa-sm prefix"></i>
+                                {{form.password2}}
+                                {{ form.password2.errors }}
+                                <label for="id_password2">Password Verify</label>
+                                <span id="confirmMessageImg" class="confirmMessage"></span>
+                              </div>
+                            </div>
+                            <div class="row center">
+                              <button type="submit" class="btn waves-effect waves-light light-blue darken-1" name="action" style="width: 182px;">SignUp</button>                            </div>
+                            </div>
+                          </form>
+                          <a href="{% url 'accounts:login' %}"><h6 class="center-align" >Already a user!</h6></a>
+                        </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <footer class="foot transparent" style="height:20px;">
+
+                       Vi codes © 2018 Copyright
+
+             </footer >
+
+{% endblock %}

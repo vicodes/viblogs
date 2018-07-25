@@ -1,0 +1,25 @@
+
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+{% load static %}
+<div class="col s12 m8 offset-m2">
+      <div class="card">
+        <div class="card-content">
+          <h2 class="flow-text">Update your information</h2>
+           <form action="" method="POST" class="padding">
+             {% csrf_token %} {{ noodle_form.as_p }}
+             <div class="divider"></div>
+             {{ formset.management_form }}
+                 {{ formset.as_p }}
+             <button type="submit" class="btn-small btn-flat waves-light waves-effect tooltipped" data-position="down" data-tooltip="Save"><i style="font-size:2em;" class="far fa-save"></i></button>
+             <a href="{% url 'accounts:profile'%}"  class="btn-small btn-flat waves-effect waves-light waves-effect Transparent right tooltipped" data-position="down" data-tooltip="Cancel"><i style="font-size:2em;" class="far fa-times-circle"></i></a>
+
+         </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

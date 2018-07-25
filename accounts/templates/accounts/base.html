@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+       <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+       <meta http-equiv="X-UA-Compatible" content="IE=edge">
+       <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.css">
+
+    <!-- Include Editor style. -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.4/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.4/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}" >
+    {% block head %}
+
+    {% endblock %}
+  </head>
+  <body>
+      <div id="mySidenav" class="sidenavb">
+        <a  class="closebtn" onclick="closeNav()"><i class="fas fa-chevron-circle-left"></i></a>
+        {% if user.is_authenticated %}
+        <a class="tooltipped hoverable" data-position="right" data-tooltip="Home" href="{% url 'blog:bloglist' %}"><i class="fas fa-home" style="color: #106cfb;"></i></a>
+        <a class="tooltipped hoverable" data-position="right" data-tooltip="My Profile" href="{% url 'accounts:profile' %}"><i class="fas fa-address-card" style="color: #ff6000;"></i></a>
+        <a class="tooltipped hoverable modal-trigger" data-position="right" data-tooltip="Add Post" href="#modal1"><i class="fas fa-plus-circle" style="color: #69fb10;"></i></a>
+        <form class="" action="{% url 'accounts:logout' %}" method="post">
+          {% csrf_token %}
+        <a class="tooltipped hoverable" data-position="right" data-tooltip="LogOut" href=""><button class="btn-flat btn-large transparent" type="submit" name="lobutton" style="color: Tomato; padding-left: 0px;padding-right: 0px;"><i class="fas fa-sign-out-alt"></i></button></a>
+        {% else %}
+        <a class="tooltipped hoverable" data-position="right" data-tooltip="LogIn" href="{% url 'accounts:login' %}"><i class="fas fa-sign-in-alt" style="color: Tomato;"></i></a>
+        <a class="tooltipped hoverable" data-position="right" data-tooltip="SignUp" href="{% url 'accounts:signup' %}"><i class="fas fa-user-plus" style="color: Dodgerblue;"></i></a>
+        {% endif %}
+          </form>
+      </div>
+        <span  style="font-size:30px;cursor:pointer; position: fixed; margin-left:15px;" onclick="openNav()">&#9776;</span>
+        {% if user.is_authenticated %}
+        <div style="position:relative">
+
+          <a style="position: fixed;right: 20px;top:0;color: #ff9422;margin-top: 5px;" href="{% url 'accounts:profile' %}"><img style=" border-radius: 8px;height:50px; width:50px;" src="{{user.userprofile.photo.url}}" alt=""/><h6>hi! {{user.username}}</h6></a>
+
+</div>
+
+        {% else %}
+
+        {% endif %}
+
+
+
+      {% block content %}
+
+
+      {% endblock %}
+
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
+
+  <!-- Include Editor JS files. -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.4/js/froala_editor.pkgd.min.js"></script>
+</script>
+
+  <script type="text/javascript" src="{% static 'blog/script.js' %}" ></script>
+
+</html>
