@@ -1,5 +1,5 @@
 from django.urls import path, re_path
-from django.contrib.auth.views import login
+from django.contrib.auth.views import LoginView
 from . import views
 
 app_name='blog'
